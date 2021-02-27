@@ -1,29 +1,33 @@
 <html lang="en">
-    <head>
-        <style>
-            h2 {text-align: center;}
-        </style>
+    <title>Fuel Quote Form</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <body>
         <div id="title">
             <h2>Fuel Quote Form</h2>
         </div>
-    </head>
-
-    <body>
         <div class="container">
             <form action="user_profile.html">
             <label for="gallons">Number of Gallons</label>
             <br>
-            <input type="number" id="gallons" name="gallons" maxlength="50" required>
-            <br><br>
+            <input type="number" id="gallons" name="gallons" maxlength="50" required style="text-align: center;">
+            <br>
             <label for="add">Delivery Address</label>
-            <br><br>
+            <br>
+            <input type="text" id="add1" name="add1" maxlength="100" required style="text-align: center;">
+            <br>
             <label for="date">Delivery Date</label>
             <br>
-            <input type="date" id="date" name="date" required>
+            <input type="date" id="date" name="date" required style="text-align: center;">
             <br><br>
             <label for="priceper">Suggested Price per Gallon:</label>
-            <br><br>
+            <br>
+            <input type="number" id="priceper" name="priceper" style="text-align: center;" value=10 readonly>
+            <br>
             <label for="total">Total Amount Due:</label>
+            <br>
+            <input type="number" id="total" name="total" style="text-align: center;" value=100 readonly>
             <br><br>
             <input type="submit" value="Submit Form">
             </form>
