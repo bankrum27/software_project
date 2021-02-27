@@ -1,27 +1,42 @@
 <html lang="en">
-    <head>
-        <style>
-            h2 {text-align: center;}
-        </style>
+    <title>Register</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <script>
+        function myFunction() {
+          var p = document.getElementById("psw");
+          if (p.type === "password") {
+            p.type = "text";
+          } else {
+            p.type = "password";
+          }
+        }
+      </script>
+
+    <body>
         <div id="title">
             <h2>Register</h2>
         </div>
-    </head>
-
-    <body>
         <div class="container">
-            <form action="/action_page.php">
+            <form action="new_profile.html">
             <label for="usrname">Username</label>
             <br>
             <input type="text" id="usrname" name="usrname" required>
-            <br><br>
+            <br>
             <label for="psw">Password</label>
             <br>
-            <input type="password " id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+            <input type="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+            <br>
+            <label class="unselectable">
+                <input type="checkbox" onclick="myFunction()">Show Password
+            </label>
             <br><br>
             <input type="submit" value="Create Account">
             </form>
         </div>
+
+        <p><a href="login.html">Already Registered?</a></p>
     </body>
     
 </html>

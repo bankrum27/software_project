@@ -1,32 +1,30 @@
 <html lang="en">
-    <head>
-        <style>
-            h2 {text-align: center;}
-        </style>
+    <title>User Profile</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <body>
         <div id="title">
             <h2>User Profile</h2>
         </div>
-    </head> 
-
-    <body>
         <div class="container">
             <form action="quote.html">
             <label for="flname">Full Name</label>
             <br>
             <input type="text" id="flname" name="flname" maxlength="50" required>
-            <br><br>
+            <br>
             <label for="add1">Address 1</label>
             <br>
             <input type="text" id="add1" name="add1" maxlength="100" required>
-            <br><br>
+            <br>
             <label for="add2">Address 2</label>
             <br>
             <input type="text" id="add2" name="add2" maxlength="100">
-            <br><br>
+            <br>
             <label for="city">City</label>
             <br>
             <input type="text" id="city" name="city" maxlength="100" required>
-            <br><br>
+            <br>
             <label for="state">State</label>
             <br>
             <select>
@@ -82,17 +80,16 @@
                 <option value="WV">WV</option>
                 <option value="WY">WY</option>
             </select>
-            <br><br>
+            <br>
             <label for="zip">Zipcode</label>
             <br>
-            <input type="text" id="zip" name="zip" minlength="5" maxlength="9">
+            <input type="text" id="zip" name="zip" minlength="5" maxlength="9" required>
             <br><br>
             <input type="submit" value="Confirm Changes">
             </form>
         </div>
     </body>
-
-      <form action="history.html">
+    <form action="history.html" style="padding: 10px;">
         <input type="submit" value="View History" />
     </form>
 </html>
