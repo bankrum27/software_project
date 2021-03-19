@@ -24,3 +24,12 @@ body {
 .unselectable{
     user-select: none;
 }
+
+#error{
+    padding: 1px;
+    margin: 1px;
+    border: 1px;
+    color: red;
+    width: 100%;
+    font-size: 14px;
+}
