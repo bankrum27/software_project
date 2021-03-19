@@ -19,7 +19,7 @@
             <h2>Register</h2>
         </div>
         <div class="container">
-            <form action="new_profile.html">
+            <form action="new_profile.html" onsubmit="return validateRegistration()">
             <label for="usrname">Username</label>
             <br>
             <input type="text" id="usrname" name="usrname" required>
@@ -31,7 +31,8 @@
             <label class="unselectable">
                 <input type="checkbox" onclick="myFunction()">Show Password
             </label>
-            <br><br>
+            <br>
+            <b><p id="error"></p></b>
             <input type="submit" value="Create Account">
             </form>
         </div>
@@ -39,4 +40,7 @@
         <p><a href="login.html">Already Registered?</a></p>
     </body>
     
+  <!--Back-end Scripts-->
+  <script src="register.js"></script>
+
 </html>
