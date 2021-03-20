@@ -1,0 +1,98 @@
+<html lang="en">
+    <title>Fuel Quote Form</title>
+
+    <link rel="stylesheet" href="styles.css">
+
+    <body>
+        <div id="title">
+            <h2>Fuel Quote Form</h2>
+        </div>
+        <div class="container">
+            <form action="user_profile.html" onsubmit="return submitOrder()">
+            <label for="gallons">Number of Gallons</label>
+            <br>
+            <input type="number" id="gallons" name="gallons" maxlength="50" required style="text-align: center;">
+            <br>
+            <label for="add">Delivery Address</label>
+            <br>
+            <input type="text" id="add1" name="add1" maxlength="100" required style="text-align: center;">
+            <br>
+            <label for="state">State</label>
+            <br>
+            <select id="state" name="state">
+                <option value="AL">AL</option>
+                <option value="AK">AK</option>
+                <option value="AR">AR</option>	
+                <option value="AZ">AZ</option>
+                <option value="CA">CA</option>
+                <option value="CO">CO</option>
+                <option value="CT">CT</option>
+                <option value="DC">DC</option>
+                <option value="DE">DE</option>
+                <option value="FL">FL</option>
+                <option value="GA">GA</option>
+                <option value="HI">HI</option>
+                <option value="IA">IA</option>	
+                <option value="ID">ID</option>
+                <option value="IL">IL</option>
+                <option value="IN">IN</option>
+                <option value="KS">KS</option>
+                <option value="KY">KY</option>
+                <option value="LA">LA</option>
+                <option value="MA">MA</option>
+                <option value="MD">MD</option>
+                <option value="ME">ME</option>
+                <option value="MI">MI</option>
+                <option value="MN">MN</option>
+                <option value="MO">MO</option>	
+                <option value="MS">MS</option>
+                <option value="MT">MT</option>
+                <option value="NC">NC</option>	
+                <option value="NE">NE</option>
+                <option value="NH">NH</option>
+                <option value="NJ">NJ</option>
+                <option value="NM">NM</option>			
+                <option value="NV">NV</option>
+                <option value="NY">NY</option>
+                <option value="ND">ND</option>
+                <option value="OH">OH</option>
+                <option value="OK">OK</option>
+                <option value="OR">OR</option>
+                <option value="PA">PA</option>
+                <option value="RI">RI</option>
+                <option value="SC">SC</option>
+                <option value="SD">SD</option>
+                <option value="TN">TN</option>
+                <option value="TX">TX</option>
+                <option value="UT">UT</option>
+                <option value="VT">VT</option>
+                <option value="VA">VA</option>
+                <option value="WA">WA</option>
+                <option value="WI">WI</option>	
+                <option value="WV">WV</option>
+                <option value="WY">WY</option>
+            </select>
+            <br>
+            <label for="date">Delivery Date</label>
+            <br>
+            <input type="date" id="date" name="date" required style="text-align: center;">
+            <br><br>
+            <label for="priceper">Suggested Price per Gallon:</label>
+            <br>
+            <input type="number" id="priceper" name="priceper" style="text-align: center;" value=10 readonly>
+            <br>
+            <label for="total">Total Amount Due:</label>
+            <br>
+            <input type="number" id="total" name="total" style="text-align: center;" value=100 readonly>
+            <br><br>
+            <input type="button" value="Re-calculate Price" onclick="calculateMargin()">
+            <br><br>
+            <input type="submit" value="Submit Form">
+            </form>
+        </div>
+    </body>
+
+    <!--Back-end Scripts-->
+    <script src="quote.js"></script>
+
+</html>
