@@ -2,82 +2,47 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+var pg = require('pg'); //PostgreSQL library
 var fs = require('fs');
 const { getDefaultSettings } = require('http2');
 const { text } = require('express');
+
+var conString = "postgres://nrlyxpww:v3pd-5PW3jrOJp7wd3iVWt2rjBSac4rX@kashin.db.elephantsql.com:5432/nrlyxpww"; //elephantsql.com database
+var client = new pg.Client(conString);
+client.connect();
+
 
 // middleware
 app.use(cors());
 app.use(express.json());      //req.body
 
-//SAMPLE DATA FOR TESTING (Don't have Database yet)
-var testUserData = 
-    [
-    {      
-        "username": "RGreen",
-        "password": "RGfuel10!",
-        "fullname": "Robert Green",
-        "address1": "46 Overlook St",
-        "address2": "",
-        "city": "Hamilton",
-        "state": "OH",
-        "zipcode": "45011"
-    },
-    {
-        "username": "JSmith",
-        "password": "Fuelprice10",
-        "fullname": "Jessica Smith",
-        "address1": "328 Linden Lane",
-        "address2": "",
-        "city": "Houston",
-        "state": "TX",
-        "zipcode": "77033"
-    }
-    ]
-;
-
-var testFuelData = 
-    [
-    {      
-        "username": "RGreen",
-        "order": 
-        [
-            {
-                "gallons": "510",
-                "address": "881 Roosevelt Court Houston, TX 77066",
-                "state": "TX",
-                "date": "2021-4-15",
-                "gprice": "51",
-                "tprice": "2001"
-            }
-        ]
-    },
-    {
-        "username": "JSmith",
-        "order":
-        [
-
-        ]
-    }
-    ]
-;
-
-
 //Send user data
 app.get('/login', async(req, res)=>{
     try{
         //Send test data (this will soon be populated with database functionality).
-        res.json(testUserData);
+        client.query('SELECT * FROM users;', function(err, result){
+            if(err){
+                return console.error("Error running query", err);
+            }
+            var t = JSON.parse(JSON.stringify(result.rows));
+            res.json(t);
+        });
     }catch(err){
         console.log(err.message);
     }
 });
 
-//Send fuel data
+//Send order history data
 app.get('/fuellogin', async(req, res)=>{
     try{
         //Send test data (this will soon be populated with database functionality).
-        res.json(testFuelData);
+        client.query('SELECT * FROM history;', function(err, result){
+            if(err){
+                return console.error("Error running query", err);
+            }
+            var t = JSON.parse(JSON.stringify(result.rows));
+            res.json(t);
+        });
     }catch(err){
         console.log(err.message);
     }
@@ -85,22 +50,26 @@ app.get('/fuellogin', async(req, res)=>{
 
 //Receieve request from register.js
 app.post('/newAccount', async(req) => {
-    testUserData.push(req.body)
-    console.log(testUserData);
+    var q = "INSERT INTO users(username, password) VALUES ('" + req.body.name + "', '" + req.body.password + "');";
+    
+    client.query(q, function(err, result){
+        if(err){
+            console.error("Error sending query", err);
+        }
+    });
 });
 
 //Receive request from user_profile.js
 app.post('/confirmChanges', async(req) => {
-    for(var i = 0 ; i < testUserData.length; i++){
-        if(testUserData[i].username == req.body.username){
-            testUserData[i].fullname = req.body.fullname;
-            testUserData[i].address1 = req.body.address1;
-            testUserData[i].address2 = req.body.address2;
-            testUserData[i].city = req.body.city;
-            testUserData[i].state = req.body.state;
-            testUserData[i].zipcode = req.body.zipcode;
+    var q = "UPDATE users SET fullname = '" + req.body.fullname + "', address1 = '" + 
+    req.body.address1 + "', address2 = '" + req.body.address2 + "', city = '"
+    + req.body.city + "', state = '" + req.body.state + "', zipcode = " + req.body.zipcode + " WHERE username = '" + req.body.username + "';";
+    
+    client.query(q, function(err, result){
+        if(err){
+            console.error("Error sending query", err);
         }
-    }
+    });
 });
 
 app.post('/newOrder', async(req) => {
@@ -114,7 +83,15 @@ app.post('/newOrder', async(req) => {
         "tprice": req.body.tprice
     };
 
-    testFuelData[req.body.id].order.push(ord);
+    var q = "INSERT INTO HISTORY(username, gallons, address, state, date, gprice, tprice) VALUES ('"
+    + req.body.username + "', " + req.body.gallons + ", '" + req.body.address + "', '"
+    + req.body.state + "', '" + req.body.date + "', " + req.body.gprice + ", " + req.body.tprice + ");";
+    
+    client.query(q, function(err, result){
+        if(err){
+            console.error("Error sending query", err);
+        }
+    });
 });
 
 

@@ -4,14 +4,32 @@ let userData = [];
 
 window.localStorage.clear();
 
+//Encrypt Function
+var crypt = {
+  secret: "cosc4353",
+  encrypt: function(clear){
+    var cipher = CryptoJS.AES.encrypt(clear, crypt.secret);
+    cipher = cipher.toString();
+    return cipher;
+  },
+
+  decrypt: function(cipher){
+    var decipher = CryptoJS.AES.decrypt(cipher, crypt.secret);
+    decipher = decipher.toString(CryptoJS.enc.Utf8);
+    return decipher;
+  }
+};
+
 //Function to find out whether the username and password are in the database
 function validateAccount(){
 
   const name = document.getElementById("usrname").value;
   const pass = document.getElementById("psw").value;
-  
+  var de;
+
   for(var i = 0; i < userData.length; i++){
-    if(userData[i].username == name && userData[i].password == pass){
+    de = crypt.decrypt(userData[i].password);
+    if(userData[i].username == name && de == pass){
       window.localStorage.setItem('Current User', name);
       return true;
     }
@@ -29,7 +47,7 @@ async function getData() {
         const response = await fetch("http://localhost:5000/login");
         const testData = await response.json();
         userData = testData;
-
+        console.log(userData);
     } catch (err) {
       console.log(err.message);
     }

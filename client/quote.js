@@ -16,7 +16,7 @@ function submitOrder(){
     calculateMargin();
     var temp =
         {
-            "id": 0,
+            "username": curr,
             "gallons": numGallons.value,
             "address": address.value,
             "state": state.value,
@@ -25,16 +25,6 @@ function submitOrder(){
             "tprice": total.value
         }
     ;
-    var id;
-
-    for(var i = 0; i < fuelData.length; i++){
-        if(fuelData[i].username == curr){
-            id=i;
-        }
-    }
-    temp.id = id;
-
-    fuelData[id].order.push(temp);
 
     const response = fetch("http://localhost:5000/newOrder", {
       method: "POST",
@@ -71,7 +61,7 @@ function calculateMargin(){
     }
 
     //Rate History Factor
-    if(fuelData[id].order.length > 0){
+    if(fuelData.length > 0){
         margintemp -= 0.01;
     }
 
@@ -88,6 +78,9 @@ function calculateMargin(){
     
     suggested.value = margin + 1.5;
     total.value = suggested.value*numGallons.value;
+
+    suggested.value = parseFloat(suggested.value).toFixed(2);
+    total.value = parseFloat(total.value).toFixed(2);
 }
 
 async function getData() {

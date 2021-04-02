@@ -2,12 +2,29 @@ console.log("register.js: Startup");
 
 userData = [];
 
+//Encrypt Function
+var crypt = {
+    secret: "cosc4353",
+    encrypt: function(clear){
+      var cipher = CryptoJS.AES.encrypt(clear, crypt.secret);
+      cipher = cipher.toString();
+      return cipher;
+    },
+  
+    decrypt: function(cipher){
+      var decipher = CryptoJS.AES.decrypt(cipher, crypt.secret);
+      decipher = decipher.toString(CryptoJS.enc.Utf8);
+      return decipher;
+    }
+};
+
 async function sendData(name, pass){
     console.log("Sending data");
-
+    window.localStorage.setItem('Current User', name);
+    var en = crypt.encrypt(pass);   //Encrypt the password
     const body = { 
         "name": name,
-        "password": pass,
+        "password": en,
         "city": "",
         "state": "" };
     const response = fetch("http://localhost:5000/newAccount", {

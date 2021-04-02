@@ -19,7 +19,7 @@
             <h2>Register</h2>
         </div>
         <div class="container">
-            <form action="new_profile.html" onsubmit="return validateRegistration()">
+            <form action="user_profile.html" onsubmit="return validateRegistration()">
             <label for="usrname">Username</label>
             <br>
             <input type="text" id="usrname" name="usrname" required>
@@ -41,6 +41,7 @@
     </body>
     
   <!--Back-end Scripts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script> <!--Encryption library-->
   <script src="register.js"></script>
 
 </html>
