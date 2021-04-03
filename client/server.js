@@ -19,7 +19,7 @@ app.use(express.json());      //req.body
 //Send user data
 app.get('/login', async(req, res)=>{
     try{
-        //Send test data (this will soon be populated with database functionality).
+        //Send test data
         client.query('SELECT * FROM users;', function(err, result){
             if(err){
                 return console.error("Error running query", err);
@@ -35,7 +35,7 @@ app.get('/login', async(req, res)=>{
 //Send order history data
 app.get('/fuellogin', async(req, res)=>{
     try{
-        //Send test data (this will soon be populated with database functionality).
+        //Send test data
         client.query('SELECT * FROM history;', function(err, result){
             if(err){
                 return console.error("Error running query", err);

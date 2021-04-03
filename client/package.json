@@ -4,19 +4,26 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "jest",
+    "test": "mocha login.test.js",
+    "coverage": "istanbul cover node_modules/mocha/bin/_mocha login.test.js -x *.test.js",
+    "showcoverage": "start coverage/lcov-report/index.html",
     "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
     "express": "^4.17.1",
+    "lodash": "^4.17.21",
     "missing": "^0.0.1",
     "pg": "^8.4.2"
   },
   "devDependencies": {
-    "jest": "^26.6.3"
+    "chai": "^4.3.4",
+    "istanbul": "^0.4.5",
+    "jest": "^26.6.3",
+    "mocha": "^8.3.2"
   },
   "keywords": []
 }

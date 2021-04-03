@@ -7,9 +7,7 @@ let fuelData = [];
 
 const doc = document.getElementsByClassName("container")[0];
 
-function drawInformation(){
-    console.log(fuelData.length);
-    
+function drawInformation(){ 
     var z = 0;
     for(var i = 0; i < fuelData.length; i++){
         if(fuelData[i].username == curr){
